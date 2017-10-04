@@ -1,0 +1,96 @@
+body {
+  padding: 4em;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing:subpixel-antialiased;
+}
+
+.ap-chat {
+
+}
+
+.row {
+  margin: 0 !important;
+}
+
+.columns {
+  padding-left: .1em;
+  padding-right: .1em;
+}
+
+:focus {
+  outline-color: transparent;
+  outline-style: none;
+}
+
+label.inline-label-flat{
+  font-weight: bold;
+  cursor: default;
+  color:#c5c5c5;
+}
+
+.tabs {
+  color: #c5c5c5;
+  border-bottom: 2px solid #3a3a3a;
+  margin-bottom: 0 !important;
+  margin-left: 0;
+  padding: 0 10px !important;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif !important;
+  font-weight: bold !important;
+  font-size: 1.25em !important;
+  line-height: 1.5em !important;
+}
+.tabs .tab-title>a {
+  padding: 0 10px !important;
+  font-size: 1.25em !important;
+}
+.tab-title {
+  background-color: #fff;
+}
+
+.tabs .tab-title>a {
+  color: #c5c5c5;
+}
+
+.tabs .tab-title.active>a {
+  background-color: #3a3a3a;
+  color: #c5c5c5;
+}
+
+a{
+  color: #c69633;
+}
+
+a:hover{
+  color: #aa812c;
+}
+
+.delete:hover {
+  color:#cc0000;
+}
+
+.iconlink {
+  color: #c5c5c5;
+}
+
+.add:hover {
+  color:#007a00;
+}
+
+.added {
+  color:#007a00;
+}
+
+.eb-v1-card-input{
+  border: 0 !important;
+  border-bottom: 1px solid #c5c5c5 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 0 .25em 0  !important;
+  height: 1.5em !important;
+}
+
+.clipper {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

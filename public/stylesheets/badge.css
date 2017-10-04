@@ -1,0 +1,96 @@
+.eb-v1-badge{
+  font-size: 0.875rem !important;
+  position: relative;
+  //height: 20rem;
+  border: 1px solid #ddd;
+
+  //box-shadow: 4px 4px 5px #c5c5c5;
+  //overflow: auto;
+  padding: 0.1em 0.5em;
+  margin-bottom: .25em;
+  
+  .columns{
+    padding-left: .25em;
+    padding-right: .25em;
+  }
+}
+
+.eb-v1-badge.row.row{
+  margin: 0 -0.25rem;
+}
+
+.eb-v1-badge.columns{
+  padding-left: .25em;
+  padding-right: .25em;
+}
+
+.eb-v1-badge-Character{
+  border-left: 4px solid #4e74a5;
+}
+
+.eb-v1-badge-Creature{
+  border-left: 4px solid #cc0000;
+}
+
+.eb-v1-badge-NPC{
+  border-left: 4px solid #007a00;
+}
+
+.eb-v1-badge-name{
+  font-weight:bold;
+}
+
+.eb-v1-badge-icon{
+  width: 1em;
+  color: #ddd;
+  font-size: 2em;
+  position: absolute;
+  top: -.1em;
+  right: -.8em;
+  clip: rect(auto, 2em, auto, .2em);
+}
+
+.eb-v1-badge-icon-reverse{
+  width: 1em;
+  padding-left: .5em;
+  color: #ddd;
+  font-size: 2em;
+  position: absolute;
+  top: -.1em;
+  left: -1.14em;
+  clip: rect(auto, auto, auto, auto);
+}
+
+.eb-v1-badge-icon-rotate-reverse{
+  -ms-transform: rotate(30deg); /* IE 9 */
+  -webkit-transform: rotate(30deg); /* Chrome, Safari, Opera */
+  transform: rotate(30deg);
+}
+
+.eb-v1-badge-icon-rotate-reverse{
+  -ms-transform: rotate(-30deg); /* IE 9 */
+  -webkit-transform: rotate(-30deg); /* Chrome, Safari, Opera */
+  transform: rotate(-30deg);
+}
+
+.eb-v1-badge-hr{
+  border-bottom: 1px dotted #c5c5c5;
+  border-style: none none dotted;
+  margin: 0.25em 0;
+}
+
+.eb-v1-badge-over{
+  border-bottom: 1px dotted #c5c5c5;
+  font-weight:bold;
+  //font-size: 1.15em;
+  line-height: 1.25rem;
+}
+.eb-v1-badge-reduced{
+  font-size: 1em;
+}
+
+.eb-v1-badge-under{
+  color:#c5c5c5;
+  font-weight:bold;
+  font-size: .75em;
+}

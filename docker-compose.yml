@@ -1,0 +1,17 @@
+version: '3.1'
+networks:
+  default:
+    external:
+      name: embers-net
+services:
+  activeplay:
+    build: .
+    ports:
+      - '5050:5050'
+      - '9229:9229'
+    volumes:
+      - ./:/usr/src/app
+    links:
+      - redis
+  redis:
+    image: redis:alpine

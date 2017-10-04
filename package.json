@@ -1,0 +1,50 @@
+{
+  "name": "activeplay",
+  "version": "0.6.3",
+  "description": "Realtime server for City of Brass",
+  "license": "MIT",
+  "author": "Daniel <embersdev@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/embersds/activeplay.git"
+  },
+  "scripts": {
+    "dev": "nodemon -r dotenv/config ./bin/www",
+    "test": "mocha test --recursive",
+    "start": "node ./bin/www"
+  },
+  "engines": {
+    "node": "^6.0.0"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.0",
+    "chance": "~1.0.2",
+    "colors": "*",
+    "cookie-parser": "~1.4.1",
+    "debug": "~2.2.0",
+    "dotenv": "4.0.0",
+    "ejs": "2.4.1",
+    "express": "~4.13.1",
+    "jsonwebtoken": "6.1.0",
+    "morgan": "~1.7.0",
+    "newrelic": "*",
+    "redis": "^2.5.3",
+    "serve-favicon": "~2.3.0",
+    "socket.io": "~1.4.5",
+    "socket.io-redis": "~1.0.0",
+    "underscore": "~1.8.3"
+  },
+  "devDependencies": {
+    "babel-eslint": "7.1.1",
+    "css-loader": "*",
+    "eslint-plugin-html": "1.7.0",
+    "foreman": "*",
+    "gulp": "*",
+    "gulp-concat": "*",
+    "gulp-foreman": "*",
+    "gulp-nodemon": "*",
+    "gulp-rename": "*",
+    "gulp-sass": "*",
+    "gulp-uglify": "*"
+  }
+}

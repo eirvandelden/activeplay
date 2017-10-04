@@ -1,0 +1,92 @@
+<%- include('header', {title: title}) %>
+
+<div id="ap-core" class="ap-chat">
+  <div class="row">
+
+    <div class="medium-4 columns" style="padding-left: .5em; padding-right: .5em;">
+      <ul class="tabs" data-tab>
+        <li class="tab-title active"><a href="#apPanel-initiative-player"><i class="fa fa-list-ol fa-fw"></i></a></li>
+      </ul>
+      <div class="tabs-content">
+        <section class="content active" id="apPanel-initiative-player">
+          <label class="inline-label-flat right">
+            Initiative
+          </label>
+          <ap-initiative-player v-bind:initiative="initiative"></ap-initiative-player>
+        </section>
+      </div>
+    </div>
+
+    <div class="medium-4 columns" style="padding-left: .5em; padding-right: .5em;">
+      <ul class="tabs" data-tab>
+        <li class="tab-title active"><a href="#apPanel-initiative"><i class="fa fa-list-ol fa-fw"></i></a></li>
+      </ul>
+      <div class="tabs-content">
+        <section class="content active" id="apPanel-initiative">
+          <label class="inline-label-flat right">
+            Initiative
+          </label>
+          <ap-initiative-gm v-bind:initiative="initiative"></ap-initiative-gm>
+        </section>
+      </div>
+    </div>
+
+    <div class="medium-4 columns" style="padding-left: .5em; padding-right: .5em;">
+
+      <ul class="tabs" data-tab>
+        <li class="tab-title active ap-v1-status-gear"><a href="#ap-panel-chat" id="ap-panel-chat-link"><i class="fa fa-gear fa-spin fa-fw"></i></a></a></li>
+        <li class="tab-title"><a href="#ap-panel-users"><i class="fa fa-fw fa-users"></i></a></li>
+      </ul>
+      <div class="tabs-content">
+
+        <section class="content active" id="ap-panel-chat">
+          <label class="inline-label-flat right">
+            <strong v-show="user.name" style="word-wrap: break-word;" v-cloak>{{ user.name }} </strong>
+          </label>
+          <ap-chat-input v-bind:input-text.sync="inputText"></ap-chat-input>
+          <ap-dice-bag></ap-dice-bag>
+          <div style="height:100vh;">
+            <ap-chat-messages v-bind:messages="messages"></ap-chat-messages>
+          </div>
+        </section>
+
+        <section class="content" id="ap-panel-users">
+          <label class="inline-label-flat right">
+            Online Users
+          </label>
+          <ap-online-users v-bind:users="users"></ap-online-users>
+        </section>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
+<script>
+
+  $(document).foundation();
+
+  var campaign = '<%= campaignId %>'
+  var token = '<%= token %>';
+
+  var test_token = '<%= test_token %>';
+
+  function new_token (campaign) {
+    if(token !== test_token) {
+      token = test_token;
+      ApCore.token = token;
+      ApCore.sendLogin();
+    }
+  }
+var ap_sok = 'http://localhost:5050/activeplay/v0.5';
+</script>
+<script src="/javascripts/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chance/0.8.0/chance.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.min.js"></script>
+<script src="/javascripts/activeplay.v0.5.js"></script>
+
+<%- include('footer') %>
