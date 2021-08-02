@@ -5,7 +5,7 @@ var nodemon = require('gulp-nodemon');
 var colors = require('colors');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
-var sass = require('gulp-sass');
+var sass = require('gulp-sass')(require('sass'));
 var rename = require('gulp-rename');
 
 var bases = {
