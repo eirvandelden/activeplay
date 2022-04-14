@@ -1,82 +1,102 @@
 .ap-chat li {
-  font-size: 14px; }
+  font-size: 14px;
+}
 
 .ap-chat input {
-  font-size: 14px; }
+  font-size: 14px;
+}
 
 .ap-msg {
-  padding-bottom: .5em;
-  word-wrap: break-word; }
+  padding-bottom: 0.5em;
+  word-wrap: break-word;
+}
 
 .ap-msg-system {
-  color: #c5c5c5; }
+  color: #c5c5c5;
+}
 
 .ap-msg-public {
-  padding-left: 1em; }
+  padding-left: 1em;
+}
 
 .ap-msg-private {
-  padding: .25em .25em .25em 1em;
+  padding: 0.25em 0.25em 0.25em 1em;
   border-left: 2px solid #575757;
-  background-color: #f7f7da; }
+  background-color: #f7f7da;
+}
 
 .ap-msg-private-me {
-  padding: .25em .25em .25em 1em;
+  padding: 0.25em 0.25em 0.25em 1em;
   border-left: 2px solid #a5a527;
-  background-color: #fafaea; }
+  background-color: #fafaea;
+}
 
 .ap-msg-private-gm {
-  padding: .25em .25em .25em 1em;
+  padding: 0.25em 0.25em 0.25em 1em;
   border-left: 2px solid #cc0000;
-  background-color: #ffcccc; }
+  background-color: #ffcccc;
+}
 
 .ap-msg-private-player {
-  padding: .25em .25em .25em 1em;
+  padding: 0.25em 0.25em 0.25em 1em;
   border-left: 2px solid #4e74a5;
-  background-color: #dce4ef; }
+  background-color: #dce4ef;
+}
 
 .ap-msg-dice {
   padding-left: 1em;
   border-left: 2px solid #575757;
-  background-color: #f2f2f2; }
+  background-color: #f2f2f2;
+}
 
 .ap-dice-total {
   border-top: 2px solid #575757;
   background-color: #c5c5c5;
-  padding: 1px 5px; }
+  padding: 1px 5px;
+}
 
 .ap-dice-roll {
-  color: #999; }
+  color: #999;
+}
 
 .ap-dice {
-  font-size: .6875rem;
-  background-color: #c5c5c5 !important; }
+  font-size: 0.6875rem;
+  background-color: #c5c5c5 !important;
+}
 
 .ap-dice:hover {
   background-color: rgba(0, 0, 0, 0.6) !important;
-  color: #c69633 !important; }
+  color: #c69633 !important;
+}
 
 .ap-timestamp {
   color: #c5c5c5;
   font-weight: normal;
-  font-size: .75em;
+  font-size: 0.75em;
   float: right;
-  padding-top: .25em; }
+  padding-top: 0.25em;
+}
 
 .ap-bordered-box {
   border: 1px solid #c5c5c5;
-  padding: .25em;
+  padding: 0.25em;
   padding-left: 1em;
-  margin-bottom: .25em; }
+  margin-bottom: 0.25em;
+}
 
 .staggered-transition {
-  transition: all .3s ease-in; }
+  transition: all 0.3s ease-in;
+}
 
 .staggered-enter {
-  opacity: 0; }
+  opacity: 0;
+}
 
 .staggered-leave {
   transition: all 0 ease-in;
-  opacity: 0; }
+  opacity: 0;
+}
 
 [v-cloak] {
-  display: none; }
+  display: none;
+}
