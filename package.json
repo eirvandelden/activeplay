@@ -22,7 +22,7 @@
     "cookie-parser": "~1.4.1",
     "debug": "~2.2.0",
     "dotenv": "4.0.0",
-    "ejs": "2.4.1",
+    "ejs": "2.5.5",
     "express": "~4.13.1",
     "extend-shallow": "^3.0.2",
     "fs-mkdirp-stream": "^1.0.0",
