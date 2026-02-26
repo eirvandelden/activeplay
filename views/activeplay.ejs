@@ -1,92 +1,137 @@
 <%- include('header', {title: title}) %>
 
-<div id="ap-core" class="ap-chat">
+<div
+  id="ap-core"
+  class="ap-chat"
+  data-controller="ap-core"
+  data-ap-core-token-value="<%= token %>"
+  data-ap-core-test-token-value="<%= test_token %>"
+  data-ap-core-campaign-id-value="<%= campaignId %>"
+  data-ap-core-socket-url-value="<%= socketUrl %>"
+  data-action="ap-chat-input:send-message->ap-core#sendMessage ap-chat-input:send-dice->ap-core#sendDice ap-dice-bag:send-dice->ap-core#sendDice ap-chat-input:add-message->ap-core#addMessage ap-chat-messages:private-message->ap-core#privateMessage"
+>
   <div class="row">
 
-    <div class="medium-4 columns" style="padding-left: .5em; padding-right: .5em;">
-      <ul class="tabs" data-tab>
-        <li class="tab-title active"><a href="#apPanel-initiative-player"><i class="fa fa-list-ol fa-fw"></i></a></li>
+    <div class="medium-4 columns" style="padding-left: .5em; padding-right: .5em;" data-controller="ap-tabs">
+      <ul class="tabs">
+        <li class="tab-title active" data-ap-tabs-target="tab">
+          <a href="#apPanel-initiative-player" data-action="click->ap-tabs#select" data-tabs-panel="apPanel-initiative-player"><i class="fa fa-list-ol fa-fw"></i></a>
+        </li>
       </ul>
       <div class="tabs-content">
-        <section class="content active" id="apPanel-initiative-player">
-          <label class="inline-label-flat right">
-            Initiative
-          </label>
-          <ap-initiative-player v-bind:initiative="initiative"></ap-initiative-player>
+        <section class="content active" id="apPanel-initiative-player" data-ap-tabs-target="panel" data-tabs-panel="apPanel-initiative-player">
+          <label class="inline-label-flat right">Initiative</label>
+
+          <div data-controller="ap-initiative-player">
+            <div class="row">
+              <div class="small-6 columns"><strong><span style="color: #c5c5c5;">Turn</span> <span data-ap-initiative-player-target="turnDisplay">1</span></strong></div>
+              <div class="small-6 columns text-right"><strong><span style="color: #c5c5c5;">Round</span> <span data-ap-initiative-player-target="roundDisplay">1</span></strong></div>
+            </div>
+            <ul class="no-bullet" data-ap-initiative-player-target="entityList"></ul>
+          </div>
         </section>
       </div>
     </div>
 
-    <div class="medium-4 columns" style="padding-left: .5em; padding-right: .5em;">
-      <ul class="tabs" data-tab>
-        <li class="tab-title active"><a href="#apPanel-initiative"><i class="fa fa-list-ol fa-fw"></i></a></li>
+    <div class="medium-4 columns" style="padding-left: .5em; padding-right: .5em;" data-controller="ap-tabs">
+      <ul class="tabs">
+        <li class="tab-title active" data-ap-tabs-target="tab">
+          <a href="#apPanel-initiative" data-action="click->ap-tabs#select" data-tabs-panel="apPanel-initiative"><i class="fa fa-list-ol fa-fw"></i></a>
+        </li>
       </ul>
       <div class="tabs-content">
-        <section class="content active" id="apPanel-initiative">
-          <label class="inline-label-flat right">
-            Initiative
-          </label>
-          <ap-initiative-gm v-bind:initiative="initiative"></ap-initiative-gm>
+        <section class="content active" id="apPanel-initiative" data-ap-tabs-target="panel" data-tabs-panel="apPanel-initiative">
+          <label class="inline-label-flat right">Initiative</label>
+
+          <div data-controller="ap-initiative-gm">
+            <div class="row">
+              <div class="small-5 columns">
+                <a href="#" class="iconlink" data-action="click->ap-initiative-gm#updateTurn" data-step="-1"><i class="fa fa-fw fa-minus-circle delete" style="font-size: 1.25em;"></i></a>
+                <strong><span style="color: #c5c5c5;">Trn</span> <span data-ap-initiative-gm-target="turnDisplay">1</span></strong>
+                <a href="#" class="iconlink add" data-action="click->ap-initiative-gm#updateTurn" data-step="1"><i class="fa fa-fw fa-plus-circle" style="font-size: 1.25em;"></i></a>
+              </div>
+              <div class="small-2 columns text-center">
+                <a href="#" class="iconlink" data-action="click->ap-initiative-gm#resetInitiative"><i class="fa fa-fw fa-history" title="Reset Initiative" style="font-size: 1.25em;"></i></a>
+              </div>
+              <div class="small-5 columns text-right">
+                <a href="#" class="iconlink" data-action="click->ap-initiative-gm#updateRound" data-step="-1"><i class="fa fa-fw fa-minus-circle delete" style="font-size: 1.25em;"></i></a>
+                <strong><span style="color: #c5c5c5;">Rnd</span> <span data-ap-initiative-gm-target="roundDisplay">1</span></strong>
+                <a href="#" class="iconlink add" data-action="click->ap-initiative-gm#updateRound" data-step="1"><i class="fa fa-fw fa-plus-circle" style="font-size: 1.25em;"></i></a>
+              </div>
+            </div>
+            <ul class="no-bullet" data-ap-initiative-gm-target="entityList"></ul>
+          </div>
         </section>
       </div>
     </div>
 
-    <div class="medium-4 columns" style="padding-left: .5em; padding-right: .5em;">
-
-      <ul class="tabs" data-tab>
-        <li class="tab-title active ap-v1-status-gear"><a href="#ap-panel-chat" id="ap-panel-chat-link"><i class="fa fa-gear fa-spin fa-fw"></i></a></a></li>
-        <li class="tab-title"><a href="#ap-panel-users"><i class="fa fa-fw fa-users"></i></a></li>
+    <div class="medium-4 columns" style="padding-left: .5em; padding-right: .5em;" data-controller="ap-tabs" data-ap-tabs-name="chat">
+      <ul class="tabs">
+        <li class="tab-title active ap-v1-status-gear" data-ap-tabs-target="tab">
+          <a href="#ap-panel-chat" data-action="click->ap-tabs#select" data-tabs-panel="ap-panel-chat">
+            <i class="fa fa-gear fa-spin fa-fw" data-ap-core-target="statusIcon"></i>
+          </a>
+        </li>
+        <li class="tab-title" data-ap-tabs-target="tab">
+          <a href="#ap-panel-users" data-action="click->ap-tabs#select" data-tabs-panel="ap-panel-users"><i class="fa fa-fw fa-users"></i></a>
+        </li>
       </ul>
-      <div class="tabs-content">
 
-        <section class="content active" id="ap-panel-chat">
+      <div class="tabs-content">
+        <section class="content active" id="ap-panel-chat" data-ap-tabs-target="panel" data-tabs-panel="ap-panel-chat">
           <label class="inline-label-flat right">
-            <strong v-show="user.name" style="word-wrap: break-word;" v-cloak>{{ user.name }} </strong>
+            <strong data-ap-core-target="userName" style="word-wrap: break-word;"></strong>
           </label>
-          <ap-chat-input v-bind:input-text.sync="inputText"></ap-chat-input>
-          <ap-dice-bag></ap-dice-bag>
-          <div style="height:100vh;">
-            <ap-chat-messages v-bind:messages="messages"></ap-chat-messages>
+
+          <div data-controller="ap-chat-input">
+            <input
+              type="text"
+              id="ap-inputText"
+              autocomplete="off"
+              autocorrect="off"
+              autocapitalize="off"
+              maxlength="500"
+              style="margin-bottom: 0px;"
+              placeholder="Type here..."
+              data-ap-chat-input-target="input"
+              data-action="keyup.enter->ap-chat-input#processMessage"
+            >
+          </div>
+
+          <div data-controller="ap-dice-bag" class="text-right" style="margin-bottom: .75em; line-height: .5em;">
+            <% ['d4', 'd6', 'd8', 'd10', 'd12', 'd20', 'd100', 'FATE'].forEach(function (die) { %>
+              <a href="#" data-action="click->ap-dice-bag#roll" data-dice="<%= die %>">
+                <span class="secondary square label ap-dice" style="margin-left: .25em; margin-top: .25em; font-weight: bold;"><%= die %></span>
+              </a>
+            <% }); %>
+          </div>
+
+          <div style="height:100vh;" data-controller="ap-chat-messages">
+            <ul class="no-bullet" data-ap-chat-messages-target="list"></ul>
           </div>
         </section>
 
-        <section class="content" id="ap-panel-users">
-          <label class="inline-label-flat right">
-            Online Users
-          </label>
-          <ap-online-users v-bind:users="users"></ap-online-users>
+        <section class="content" id="ap-panel-users" data-ap-tabs-target="panel" data-tabs-panel="ap-panel-users">
+          <label class="inline-label-flat right">Online Users</label>
+          <div data-controller="ap-online-users">
+            <ul class="no-bullet" data-ap-online-users-target="list"></ul>
+          </div>
         </section>
-
       </div>
     </div>
 
   </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
-<script>
-
-  $(document).foundation();
-
-  var campaign = '<%= campaignId %>'
-  var token = '<%= token %>';
-
-  var test_token = '<%= test_token %>';
-
-  function new_token (campaign) {
-    if(token !== test_token) {
-      token = test_token;
-      ApCore.token = token;
-      ApCore.sendLogin();
-    }
-  }
-var ap_sok = 'http://localhost:5050/activeplay/v0.5';
-</script>
 <script src="/javascripts/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chance/0.8.0/chance.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.min.js"></script>
-<script src="/javascripts/activeplay.v0.5.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "@hotwired/stimulus": "https://ga.jspm.io/npm:@hotwired/stimulus@3.2.2/dist/stimulus.js"
+  }
+}
+</script>
+<script type="module" src="/javascripts/activeplay.v0.7.js"></script>
 
 <%- include('footer') %>

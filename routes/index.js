@@ -29,7 +29,13 @@ if (process.env.ENV === 'development') {
 
     user.exp = Math.round((new Date().getTime() / 1000)) + 10000;
     var test_token = jwt.sign(user, process.env.ACTIVEPLAY_SECRET);
-    res.render('activeplay', { title: 'ActivePlay™', token: token, campaignId: user.campaignId, test_token: test_token });
+    res.render('activeplay', {
+      title: 'ActivePlay™',
+      token: token,
+      campaignId: user.campaignId,
+      test_token: test_token,
+      socketUrl: process.env.SOCKET_URL || '/activeplay/v0.6'
+    });
   });
 }
 
