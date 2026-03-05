@@ -2,6 +2,7 @@ import { Controller } from '@hotwired/stimulus';
 
 import ApStore, { addMessage } from '../ap-store.js';
 import { initSocket } from '../ap-socket.js';
+import { disconnectSocket } from '../socket-lifecycle.mjs';
 
 function ensureMessageType(message) {
   const nextMessage = Object.assign({}, message || {});
@@ -52,6 +53,9 @@ export default class extends Controller {
     if (window._apSocket === this.socket) {
       delete window._apSocket;
     }
+
+    disconnectSocket(this.socket);
+    this.socket = null;
   }
 
   sendMessage(event) {

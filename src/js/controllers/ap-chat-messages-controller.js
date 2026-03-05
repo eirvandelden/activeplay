@@ -1,6 +1,7 @@
 import { Controller } from '@hotwired/stimulus';
 
 import ApStore from '../ap-store.js';
+import { sanitizeChatHtml } from '../security.mjs';
 
 function escapeHtml(value) {
   return String(value || '')
@@ -65,7 +66,7 @@ export default class extends Controller {
 
     const cssClass = escapeHtml(message.cssClass || 'ap-msg-system');
     const textMessage = message.text ? '<div class="' + cssClass + '">' + escapeHtml(message.text) + '</div>' : '';
-    const htmlMessage = message.html ? '<div class="' + cssClass + '">' + message.html + '</div>' : '';
+    const htmlMessage = message.html ? '<div class="' + cssClass + '">' + sanitizeChatHtml(message.html) + '</div>' : '';
 
     return '' +
       '<li>' +

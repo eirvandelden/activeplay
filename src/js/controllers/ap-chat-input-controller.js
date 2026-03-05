@@ -1,6 +1,7 @@
 import { Controller } from '@hotwired/stimulus';
 
 import ApStore from '../ap-store.js';
+import { sanitizeInputText } from '../security.mjs';
 
 const REGEX_NAME = /(^"(?:\\?.)*?")|(^\w*)/i;
 const REGEX_WHISPER = /(^\/w )|(^\/pm )|(^\/whisper )/i;
@@ -16,12 +17,6 @@ const HELP_TEXT = [
   '/w <span style="color: #4e74a5">or</span> /pm <span style="color: #4e74a5">or</span> /whisper "<span style="color: #4e74a5">recipient</span>" <span style="color: #4e74a5">message</span>',
   '/help <span style="color: #4e74a5">or</span> /?'
 ];
-
-function sanitizeText(rawText) {
-  const element = document.createElement('div');
-  element.textContent = rawText;
-  return element.textContent;
-}
 
 export default class extends Controller {
   static targets = ['input'];
@@ -45,7 +40,7 @@ export default class extends Controller {
     }
 
     const rawInput = this.inputTarget.value.toString();
-    const input = sanitizeText(rawInput);
+    const input = sanitizeInputText(rawInput);
     const message = { text: input, timestamp: Date.now() };
 
     if (REGEX_WHISPER.test(rawInput)) {
