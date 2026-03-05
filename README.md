@@ -107,10 +107,7 @@ npm start
 
 | Issue | Details |
 |---|---|
-| CORS not enforced | `cors` middleware exists but is commented out in `app.js:26` — any origin can connect |
-| Duplicate socket handler | `initiative:setEntities` is registered twice in `servers/chat.v0.6.js` |
 | User presence not persisted | `models/user.js` (Redis-backed) exists but is never called — user lists are lost on server restart |
-| No test suite | `package.json` references `mocha test/` but no `test/` directory exists |
 | Encounter model never built | `Activeplay::Encounter` is referenced in City of Brass test stubs but was never implemented |
 | Mobile support | A phone layout stub exists in City of Brass but ActivePlay has no mobile-specific handling |
 | Outdated stack | Socket.io 1.x and Express 4.13 are still legacy and should be upgraded |

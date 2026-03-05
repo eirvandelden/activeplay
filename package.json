@@ -9,10 +9,10 @@
     "url": "https://github.com/eirvandelden/activeplay.git"
   },
   "scripts": {
-    "dev": "nodemon app.js",
+    "dev": "PORT=${PORT:-5050} nodemon app.js",
     "build:css": "gulp sass",
     "watch:css": "gulp sass:watch",
-    "lint": "eslint app.js gulpfile.js lib/**/*.js routes/**/*.js servers/**/*.js src/js/**/*.js test/**/*.js",
+    "lint": "eslint --no-error-on-unmatched-pattern app.js gulpfile.js lib/**/*.js routes/**/*.js servers/**/*.js src/js/**/*.js src/js/**/*.mjs test/**/*.js test/**/*.mjs",
     "test": "mocha test --recursive",
     "start": "node app.js"
   },

@@ -24,7 +24,7 @@ server.listen(port, function () {
   console.log('Server listening at port %d'.green, port);
 });
 
-// app.use(require('./middlewares/cors'));
+app.use(require('./middlewares/cors'));
 
 /* ------------------------------------------------------
   LOAD UP socket.io
