@@ -9,14 +9,15 @@
     "url": "https://github.com/eirvandelden/activeplay.git"
   },
   "scripts": {
-    "dev": "nodemon -r dotenv/config ./bin/www",
+    "dev": "nodemon app.js",
     "build:css": "gulp sass",
     "watch:css": "gulp sass:watch",
+    "lint": "eslint app.js gulpfile.js lib/**/*.js routes/**/*.js servers/**/*.js src/js/**/*.js test/**/*.js",
     "test": "mocha test --recursive",
-    "start": "node ./bin/www"
+    "start": "node app.js"
   },
   "engines": {
-    "node": "^6.0.0"
+    "node": ">=20"
   },
   "dependencies": {
     "body-parser": "~1.15.0",
@@ -31,7 +32,7 @@
     "is-negated-glob": "^1.0.0",
     "is-valid-glob": "^1.0.0",
     "json-stable-stringify-without-jsonify": "^1.0.1",
-    "jsonwebtoken": "6.1.0",
+    "jsonwebtoken": "^9.0.2",
     "lazystream": "^1.0.0",
     "lead": "^3.0.0",
     "morgan": "~1.7.0",
@@ -57,13 +58,16 @@
     "babel-eslint": "7.1.1",
     "colors": "^1.1.2",
     "css-loader": "*",
+    "eslint": "^8.57.1",
     "eslint-plugin-html": "1.7.0",
     "foreman": "*",
     "gulp": "^4.0.2",
     "gulp-foreman": "*",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^5.1.0",
+    "mocha": "^11.7.5",
     "nanomatch": "^1.2.13",
+    "nodemon": "^3.1.14",
     "plugin-error": "^1.0.1",
     "posix-character-classes": "^1.0.0",
     "pstree.remy": "^1.1.8",

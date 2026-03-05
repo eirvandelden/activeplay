@@ -11,6 +11,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var colors = require('colors');
+var runtimeConfig = require('./lib/runtime-config');
 
 var port = process.env.PORT || '3000';
 var app = express();
@@ -32,8 +33,9 @@ var io = require('socket.io')(server);
 
 var redis = require('redis').createClient;
 var adapter = require('socket.io-redis');
-var pub = redis(process.env.REDISCLOUD_URL, { key: 'activeplay' });
-var sub = redis(process.env.REDISCLOUD_URL, { key: 'activeplay', return_buffers: true });
+var redisUrl = runtimeConfig.redisUrl(process.env);
+var pub = redis(redisUrl, { key: 'activeplay' });
+var sub = redis(redisUrl, { key: 'activeplay', return_buffers: true });
 
 io.adapter(adapter({ pubClient: pub, subClient: sub }));
 

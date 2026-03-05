@@ -116,7 +116,7 @@ export default class extends Controller {
     if (!matched || !matched[0]) {
       return '';
     }
-    return matched[0].replace(/["']/g, '');
+    return matched[0].replace(/"/g, '');
   }
 
   getRecipientId(name) {

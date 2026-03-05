@@ -48,7 +48,7 @@ Copy `.env.example` to `.env` and configure:
 |---|---|
 | `PORT` | HTTP port (default: `3000`) |
 | `ACTIVEPLAY_SECRET` | Shared JWT secret — must match `ACTIVEPLAY_SECRET` in City of Brass `application.yml` |
-| `REDISCLOUD_URL` | Redis connection URL (e.g. `redis://localhost:6379`) |
+| `REDISCLOUD_URL` | Redis connection URL (default: `redis://127.0.0.1:6379`) |
 | `CORS_WHITE_LIST` | Comma-separated list of allowed origins (e.g. `http://localhost:3000`) |
 
 In City of Brass, also set:
@@ -113,4 +113,4 @@ npm start
 | No test suite | `package.json` references `mocha test/` but no `test/` directory exists |
 | Encounter model never built | `Activeplay::Encounter` is referenced in City of Brass test stubs but was never implemented |
 | Mobile support | A phone layout stub exists in City of Brass but ActivePlay has no mobile-specific handling |
-| Outdated stack | Node.js engine still declares `^6.0.0` (EOL 2019), Socket.io 1.x |
+| Outdated stack | Socket.io 1.x and Express 4.13 are still legacy and should be upgraded |
