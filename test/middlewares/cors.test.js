@@ -50,10 +50,10 @@ describe('cors middleware', function () {
     assert.strictEqual(res.headers['Access-Control-Allow-Origin'], 'https://app.example.com');
   });
 
-  it('allows request when host is in whitelist', function () {
-    process.env.CORS_WHITE_LIST = 'activeplay.example.com';
+  it('allows request when host-only whitelist entry matches origin host', function () {
+    process.env.CORS_WHITE_LIST = 'cityofbrass.localhost';
 
-    var req = { headers: { host: 'activeplay.example.com' } };
+    var req = { headers: { origin: 'http://cityofbrass.localhost:3000', host: 'activeplay.localhost:5050' } };
     var res = buildResponse();
     var nextCalled = false;
 
@@ -62,7 +62,7 @@ describe('cors middleware', function () {
     });
 
     assert.strictEqual(nextCalled, true);
-    assert.strictEqual(res.headers['Access-Control-Allow-Origin'], 'activeplay.example.com');
+    assert.strictEqual(res.headers['Access-Control-Allow-Origin'], 'http://cityofbrass.localhost:3000');
   });
 
   it('rejects request when origin and host are not in whitelist', function () {
@@ -93,5 +93,37 @@ describe('cors middleware', function () {
     });
 
     assert.strictEqual(nextCalled, true);
+  });
+
+  it('allows non-CORS requests when whitelist is configured but Origin is missing', function () {
+    process.env.CORS_WHITE_LIST = 'https://cityofbrass.vandelden.family';
+
+    var req = { headers: { host: 'activeplay.localhost:5050' } };
+    var res = buildResponse();
+    var nextCalled = false;
+
+    corsMiddleware(req, res, function () {
+      nextCalled = true;
+    });
+
+    assert.strictEqual(nextCalled, true);
+    assert.strictEqual(res.statusCode, null);
+  });
+
+  it('responds with 204 for allowed CORS preflight requests', function () {
+    process.env.CORS_WHITE_LIST = 'https://cityofbrass.vandelden.family';
+
+    var req = { method: 'OPTIONS', headers: { origin: 'https://cityofbrass.vandelden.family' } };
+    var res = buildResponse();
+    var nextCalled = false;
+
+    corsMiddleware(req, res, function () {
+      nextCalled = true;
+    });
+
+    assert.strictEqual(nextCalled, false);
+    assert.strictEqual(res.statusCode, 204);
+    assert.strictEqual(res.sent, true);
+    assert.strictEqual(res.headers['Access-Control-Allow-Origin'], 'https://cityofbrass.vandelden.family');
   });
 });

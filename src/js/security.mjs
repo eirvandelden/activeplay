@@ -8,16 +8,46 @@ function decodeEntities(value) {
     .replace(/&apos;/gi, "'");
 }
 
+function escapeHtml(value) {
+  return String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function purifier() {
+  if (globalThis.DOMPurify && typeof globalThis.DOMPurify.sanitize === 'function') {
+    return globalThis.DOMPurify;
+  }
+
+  return null;
+}
+
 export function sanitizeInputText(rawText) {
-  var withoutTags = String(rawText || '').replace(/<[^>]*>/g, '');
+  var activePurifier = purifier();
+  if (!activePurifier) {
+    return decodeEntities(String(rawText || '').replace(/<[^>]*>/g, ''));
+  }
+
+  var withoutTags = activePurifier.sanitize(String(rawText || ''), {
+    ALLOWED_TAGS: [],
+    ALLOWED_ATTR: []
+  });
+
   return decodeEntities(withoutTags);
 }
 
 export function sanitizeChatHtml(rawHtml) {
-  return String(rawHtml || '')
-    .replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, '')
-    .replace(/\son\w+\s*=\s*"[^"]*"/gi, '')
-    .replace(/\son\w+\s*=\s*'[^']*'/gi, '')
-    .replace(/\son\w+\s*=\s*[^\s>]+/gi, '')
-    .replace(/javascript:/gi, '');
+  var activePurifier = purifier();
+  if (!activePurifier) {
+    return escapeHtml(rawHtml);
+  }
+
+  return activePurifier.sanitize(String(rawHtml || ''), {
+    ALLOWED_TAGS: ['a', 'b', 'br', 'div', 'em', 'i', 'img', 'li', 'span', 'strong', 'ul'],
+    ALLOWED_ATTR: ['alt', 'class', 'href', 'rel', 'src', 'style', 'target', 'title'],
+    ALLOW_DATA_ATTR: false
+  });
 }
