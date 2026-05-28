@@ -11,6 +11,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var colors = require('colors');
+var runtimeConfig = require('./lib/runtime-config');
+var allowedOrigins = require('./lib/allowed-origins');
 
 var port = process.env.PORT || '3000';
 var app = express();
@@ -23,17 +25,19 @@ server.listen(port, function () {
   console.log('Server listening at port %d'.green, port);
 });
 
-// app.use(require('./middlewares/cors'));
+app.use(require('./middlewares/cors'));
 
 /* ------------------------------------------------------
   LOAD UP socket.io
 ------------------------------------------------------ */
 var io = require('socket.io')(server);
+io.origins(allowedOrigins.socketIoOriginGuard(process.env));
 
 var redis = require('redis').createClient;
 var adapter = require('socket.io-redis');
-var pub = redis(process.env.REDISCLOUD_URL, { key: 'activeplay' });
-var sub = redis(process.env.REDISCLOUD_URL, { key: 'activeplay', return_buffers: true });
+var redisUrl = runtimeConfig.redisUrl(process.env);
+var pub = redis(redisUrl, { key: 'activeplay' });
+var sub = redis(redisUrl, { key: 'activeplay', return_buffers: true });
 
 io.adapter(adapter({ pubClient: pub, subClient: sub }));
 
@@ -54,6 +58,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/src', express.static(path.join(__dirname, 'src')));
 
 app.use('/', routes);
 

@@ -84,19 +84,10 @@
   margin-bottom: .25em;
 }
 
-.staggered-transition {
-  transition: all .3s ease-in;
-}
-
-.staggered-enter {
-  opacity: 0;
-}
-
-.staggered-leave {
-  transition: all 0 ease-in;
-  opacity: 0;
-}
-
-[v-cloak] {
+.tabs-content .content {
   display: none;
+}
+
+.tabs-content .content.active {
+  display: block;
 }

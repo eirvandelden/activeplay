@@ -16,7 +16,7 @@ Realtime companion server for [City of Brass](../cityofbrass) — a web app for 
 City of Brass (Rails)
   └── mints a short-lived JWT (ACTIVEPLAY_SECRET)
   └── serves the three-column DnD session layout
-        ├── embeds activeplay.v0.6.min.js + .css directly from this server
+        ├── pins/imports activeplay.v0.7.js (Stimulus controllers) + CSS
         └── browser opens a Socket.io connection to ActivePlay using the JWT
 
 ActivePlay (this app — Node.js / Express / Socket.io)
@@ -28,7 +28,7 @@ ActivePlay (this app — Node.js / Express / Socket.io)
 
 Socket.io namespace: `/activeplay/v0.6`
 
-Frontend: Vue.js 1.x components compiled via Gulp, served as static assets from `/public`.
+Frontend: Stimulus controllers + ES modules (importmap-friendly), served from `/src/js` (entrypoint `/public/javascripts/activeplay.v0.7.js`).
 
 ## Setup
 
@@ -48,7 +48,7 @@ Copy `.env.example` to `.env` and configure:
 |---|---|
 | `PORT` | HTTP port (default: `3000`) |
 | `ACTIVEPLAY_SECRET` | Shared JWT secret — must match `ACTIVEPLAY_SECRET` in City of Brass `application.yml` |
-| `REDISCLOUD_URL` | Redis connection URL (e.g. `redis://localhost:6379`) |
+| `REDISCLOUD_URL` | Redis connection URL (default: `redis://127.0.0.1:6379`) |
 | `CORS_WHITE_LIST` | Comma-separated list of allowed origins (e.g. `http://localhost:3000`) |
 
 In City of Brass, also set:
@@ -64,13 +64,21 @@ docker-compose up
 
 ## Running
 
-**Development** (auto-restarts on file changes, compiles JS/CSS via Gulp):
+**Development**:
 
 ```bash
-gulp
+npm run dev
 ```
 
-Serves on `http://localhost:5050` by default. A dev test page is available at `/ap` (development only).
+In a second terminal, compile/watch CSS:
+
+```bash
+npm run build:css
+# or
+npm run watch:css
+```
+
+Serves on `http://localhost:5050` by default. A dev test page is available at `/ap` (development only, importmap-style module loading).
 
 **Production:**
 
@@ -99,12 +107,7 @@ npm start
 
 | Issue | Details |
 |---|---|
-| Two-digit initiative broken | Input in GM view is truncated to 1 character — initiative values ≥ 10 cannot be entered (`ap-initiative-badge-gm.js`) |
-| CORS not enforced | `cors` middleware exists but is commented out in `app.js:26` — any origin can connect |
-| Duplicate socket handler | `initiative:setEntities` is registered twice in `servers/chat.v0.6.js` |
 | User presence not persisted | `models/user.js` (Redis-backed) exists but is never called — user lists are lost on server restart |
-| Dev test page points to wrong version | `views/activeplay.ejs` loads `v0.5` assets; server runs `v0.6` |
-| No test suite | `package.json` references `mocha test/` but no `test/` directory exists |
 | Encounter model never built | `Activeplay::Encounter` is referenced in City of Brass test stubs but was never implemented |
 | Mobile support | A phone layout stub exists in City of Brass but ActivePlay has no mobile-specific handling |
-| Outdated stack | Node.js `^6.0.0` (EOL 2019), Socket.io 1.x, Vue.js 1.x |
+| Outdated stack | Socket.io 1.x and Express 4.13 are still legacy and should be upgraded |

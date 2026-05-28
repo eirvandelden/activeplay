@@ -150,13 +150,6 @@ var Server = function (options) {
       Initiative.setEntities(self.pub, socket.campaignId, message);
     });
 
-    socket.on('initiative:setEntities', function (message) {
-      message.timestamp = new Date().getTime();
-
-      socket.broadcast.to(socket.room).emit('initiative:setEntities', message);
-      Initiative.setEntities(self.pub, socket.campaignId, message);
-    });
-
     socket.on('dice', function (message) {
       if (!message.text && message.label) {
         message.text = '"' + message.label + '" ' + message.dice;

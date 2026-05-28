@@ -1,15 +1,13 @@
-FROM node:boron-alpine
+FROM node:20-alpine
 
 RUN apk update
 
-COPY package.json /tmp/package.json
-RUN cd /tmp && npm i -q
-RUN npm i -q gulp
-RUN mkdir -p /usr/src/app && cp -a /tmp/node_modules /usr/src/app
-
 WORKDIR /usr/src/app
-COPY ./ /usr/src/app
+ENV PORT=5050
 
-RUN npm i -q -g gulp
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev
 
-CMD gulp
+COPY ./ ./
+
+CMD ["npm", "start"]
