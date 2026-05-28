@@ -68,7 +68,7 @@
     "mocha": "^11.7.5",
     "nanomatch": "^1.2.13",
     "nodemon": "^3.1.14",
-    "plugin-error": "^1.0.1",
+    "plugin-error": "^2.0.1",
     "posix-character-classes": "^1.0.0",
     "pstree.remy": "^1.1.8",
     "sass": "^1.37.0",
