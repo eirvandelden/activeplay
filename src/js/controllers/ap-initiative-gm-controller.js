@@ -189,6 +189,8 @@ export default class extends Controller {
       turn: ApStore.initiative.turn,
       round: ApStore.initiative.round
     });
+
+    ApStore.notify('ap:initiative-updated', { initiative: ApStore.initiative });
   }
 
   sendEntities() {
