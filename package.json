@@ -46,7 +46,7 @@
     "resolve-options": "^1.1.0",
     "serve-favicon": "~2.5.0",
     "socket.io": "~1.4.5",
-    "socket.io-redis": "~1.0.0",
+    "socket.io-redis": "~6.1.1",
     "through2-filter": "^3.0.0",
     "to-absolute-glob": "^2.0.2",
     "to-regex": "^3.0.2",
