@@ -12,6 +12,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var colors = require('colors');
 var runtimeConfig = require('./lib/runtime-config');
+var allowedOrigins = require('./lib/allowed-origins');
 
 var port = process.env.PORT || '3000';
 var app = express();
@@ -30,6 +31,7 @@ app.use(require('./middlewares/cors'));
   LOAD UP socket.io
 ------------------------------------------------------ */
 var io = require('socket.io')(server);
+io.origins(allowedOrigins.socketIoOriginGuard(process.env));
 
 var redis = require('redis').createClient;
 var adapter = require('socket.io-redis');
