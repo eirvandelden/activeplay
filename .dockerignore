@@ -1,5 +1,11 @@
-./.git/
-./tmp/
-./log/
-./node_modules/
-npm-debug.log
+/.git/
+/.env*
+!/.env.example
+/node_modules/
+/test/
+/Procfile
+/README.md
+/LICENSE
+/docker-compose.yml
+/.kamal/
+/docs/
