@@ -15,9 +15,12 @@ proxy:
   forward_headers: true
   app_port: 5050
   healthcheck:
-    path: /
+    path: /favicon.ico
     interval: 5
     timeout: 5
+
+ssh:
+  proxy_command: "nc %h %p"
 
 registry:
   server: registry.vandelden.family
