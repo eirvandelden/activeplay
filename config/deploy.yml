@@ -39,7 +39,6 @@ env:
     CORS_WHITE_LIST: https://dnd.vandelden.family
   secret:
     - ACTIVEPLAY_SECRET
-    - NEW_RELIC_LICENSE_KEY
 
 aliases:
   apps: server exec docker exec kamal-proxy kamal-proxy list
