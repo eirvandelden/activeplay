@@ -103,6 +103,32 @@ npm start
 | `4dF` | Roll Fate/Fudge dice |
 | `"Stealth check" d20+5` | Named roll |
 
+## Production deploy
+
+Live at **https://activeplay.dnd.vandelden.family**.
+
+Requires SSH access to `192.168.1.101` (deploy target) and `192.168.1.102` (remote builder), and 1Password CLI authed to `vandelden.1password.com`.
+
+```bash
+bin/kamal setup         # First deploy (one-time)
+bin/kamal deploy        # Subsequent deploys
+bin/kamal app logs      # Tail production logs
+```
+
+Secrets are fetched from the `Familie/ActivePlay` vault item via `op read` at deploy time. The `ACTIVEPLAY_SECRET` JWT signing key must match the value in `Familie/CityOfBrass` — keep both in sync.
+
+socket.io is intentionally pinned to 1.x to remain wire-compatible with the cityofbrass client library.
+
+### Infrastructure
+
+| Component | Details |
+|---|---|
+| Deploy target | `192.168.1.101` via kamal-proxy |
+| Remote builder | `192.168.1.102` (amd64 image build) |
+| Registry | `registry.vandelden.family` |
+| Redis | Accessory on `192.168.1.101`, data at `/home/app_storage/activeplay/redis` |
+| Routing | Nginx Proxy Manager → kamal-proxy → app |
+
 ## Known bugs and incomplete features
 
 | Issue | Details |
