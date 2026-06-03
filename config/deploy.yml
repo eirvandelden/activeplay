@@ -1,0 +1,59 @@
+minimum_version: "2.5.0"
+
+service: activeplay
+
+image: activeplay
+
+servers:
+  web:
+    - 192.168.1.101
+
+proxy:
+  ssl: false
+  hosts:
+    - activeplay.dnd.vandelden.family
+  forward_headers: true
+  app_port: 5050
+  healthcheck:
+    path: /favicon.ico
+    interval: 5
+    timeout: 5
+
+ssh:
+  proxy_command: "nc %h %p"
+
+registry:
+  server: registry.vandelden.family
+  username: root
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+builder:
+  arch: amd64
+  remote: ssh://root@192.168.1.102
+  context: "."
+  args:
+    NODE_VERSION: "22"
+
+env:
+  clear:
+    NODE_ENV: production
+    REDISCLOUD_URL: redis://activeplay-redis:6379/0
+    CORS_WHITE_LIST: https://dnd.vandelden.family
+  secret:
+    - ACTIVEPLAY_SECRET
+
+aliases:
+  apps: server exec docker exec kamal-proxy kamal-proxy list
+  shell: app exec --interactive --reuse "sh"
+  logs-live: logs --follow
+
+deploy_timeout: 20
+
+accessories:
+  redis:
+    image: redis:7-alpine
+    host: 192.168.1.101
+    cmd: redis-server --loglevel warning
+    directories:
+      - /home/app_storage/activeplay/redis:/data
