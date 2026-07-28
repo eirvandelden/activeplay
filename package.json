@@ -36,7 +36,7 @@
     "jsonwebtoken": "^9.0.2",
     "lazystream": "^1.0.0",
     "lead": "^3.0.0",
-    "morgan": "~1.7.0",
+    "morgan": "~1.10.1",
     "newrelic": "*",
     "object.assign": "^4.1.2",
     "path-dirname": "^1.0.2",
