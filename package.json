@@ -45,7 +45,7 @@
     "remove-bom-stream": "^1.2.0",
     "resolve-options": "^1.1.0",
     "serve-favicon": "~2.5.0",
-    "socket.io": "~1.7.4",
+    "socket.io": "~4.8.3",
     "socket.io-redis": "~6.1.1",
     "through2-filter": "^3.0.0",
     "to-absolute-glob": "^2.0.2",
