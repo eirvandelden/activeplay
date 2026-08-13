@@ -23,7 +23,7 @@
     "body-parser": "~1.15.0",
     "chance": "~1.0.2",
     "colors": "^1.1.2",
-    "cookie-parser": "~1.4.1",
+    "cookie-parser": "~1.4.7",
     "debug": "~2.2.0",
     "dotenv": "4.0.0",
     "ejs": "5.0.2",
@@ -45,7 +45,7 @@
     "remove-bom-stream": "^1.2.0",
     "resolve-options": "^1.1.0",
     "serve-favicon": "~2.5.0",
-    "socket.io": "~1.4.5",
+    "socket.io": "~1.7.4",
     "socket.io-redis": "~6.1.1",
     "through2-filter": "^3.0.0",
     "to-absolute-glob": "^2.0.2",
@@ -56,7 +56,7 @@
     "vinyl-sourcemap": "^1.1.0"
   },
   "devDependencies": {
-    "dompurify": "^3.3.2",
+    "dompurify": "^3.4.13",
     "eslint": "^9.0.0",
     "foreman": "*",
     "globals": "^15.0.0",
