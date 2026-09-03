@@ -20,14 +20,14 @@
     "node": ">=22.0.0"
   },
   "dependencies": {
-    "body-parser": "~1.20.6",
+    "body-parser": "~2.3.0",
     "chance": "~1.0.2",
     "colors": "^1.1.2",
     "cookie-parser": "~1.4.7",
     "debug": "~2.2.0",
     "dotenv": "4.0.0",
     "ejs": "5.0.2",
-    "express": "^4.22.2",
+    "express": "^5.2.1",
     "extend-shallow": "^3.0.2",
     "fs-mkdirp-stream": "^1.0.0",
     "is-negated-glob": "^1.0.0",
