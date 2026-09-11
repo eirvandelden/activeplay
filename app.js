@@ -30,8 +30,9 @@ app.use(require('./middlewares/cors'));
 /* ------------------------------------------------------
   LOAD UP socket.io
 ------------------------------------------------------ */
-var io = require('socket.io')(server);
-io.origins(allowedOrigins.socketIoOriginGuard(process.env));
+var io = require('socket.io')(server, {
+  allowRequest: allowedOrigins.socketIoHandshakeGuard(process.env)
+});
 
 var redis = require('redis').createClient;
 var adapter = require('socket.io-redis');
