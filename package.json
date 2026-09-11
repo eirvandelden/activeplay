@@ -66,16 +66,17 @@
     "gulp-sass": "^5.1.0",
     "jsdom": "^28.1.0",
     "mocha": "^11.7.5",
-    "nanomatch": "^1.2.13",
     "nodemon": "^3.1.14",
     "plugin-error": "^2.0.1",
     "posix-character-classes": "^1.0.0",
     "pstree.remy": "^1.1.8",
     "sass": "^1.37.0",
-    "snapdragon": "^0.12.1",
     "snapdragon-node": "^3.0.0",
     "split-string": "^6.1.0",
     "transfob": "^1.0.0",
     "upath": "^2.0.1"
+  },
+  "overrides": {
+    "picomatch": "^2.3.2"
   }
 }
