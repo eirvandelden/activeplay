@@ -52,7 +52,7 @@
     "to-regex": "^3.0.2",
     "to-through": "^3.0.0",
     "underscore": "~1.13.8",
-    "undertaker": "^1.3.0",
+    "undertaker": "^2.0.0",
     "vinyl-sourcemap": "^2.0.0"
   },
   "devDependencies": {
