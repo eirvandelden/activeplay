@@ -56,7 +56,7 @@
     "vinyl-sourcemap": "^2.0.0"
   },
   "devDependencies": {
-    "dompurify": "^3.4.13",
+    "dompurify": "^3.4.17",
     "eslint": "^9.0.0",
     "globals": "^15.0.0",
     "gulp": "^5.0.1",
